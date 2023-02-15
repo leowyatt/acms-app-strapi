@@ -1,7 +1,8 @@
 {
-  "name": "acms-ra",
-  "version": "0.1.0",
-  "private": true,
+  "name": "acms-app-rapg",
+  "version": "1.0.0",
+  "author": "leowyatt",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
