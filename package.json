@@ -4,15 +4,28 @@
   "author": "leowyatt",
   "license": "MIT",
   "scripts": {
-    "dev": "next dev",
+    "develop": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dev": "yarn pm2 startOrRestart ecosystem.config.js --only rapg-dev",
+    "prod": "yarn pm2 startOrRestart ecosystem.config.js --only rapg-prod"
+  },
+  "comments": {
+    "scripts": {
+      "develop": "start development",
+      "build": "run build",
+      "start": "start production",
+      "lint": "testing",
+      "dev": "start develop",
+      "prod": "start production"
+    }
   },
   "dependencies": {
     "@apollo/client": "^3.7.7",
     "@apollo/react-hooks": "^4.0.0",
     "@next/font": "13.1.6",
+    "@strapi/utils": "^4.6.1",
     "@types/node": "18.13.0",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.10",
@@ -21,7 +34,10 @@
     "graphql": "^16.6.0",
     "next": "13.1.6",
     "ra-data-graphql": "^4.8.0",
+    "ra-data-graphql-simple": "^4.8.0",
+    "ra-data-graphql-strapi": "^2.9.3",
     "ra-data-json-server": "^4.8.0",
+    "ra-data-simple-rest": "^4.8.0",
     "ra-postgraphile": "^6.1.0",
     "ra-strapi-rest": "^0.1.3",
     "react": "18.2.0",
@@ -29,5 +45,13 @@
     "react-client-only": "^1.0.2",
     "react-dom": "18.2.0",
     "typescript": "4.9.5"
+  },
+  "devDependencies": {
+    "pm2": "^5.2.2"
+  },
+  "engines": {
+    "npm": ">=8.5.5 <=10.0.0",
+    "node": ">=16.15.0 <=19.0.0",
+    "yarn": ">=1.22.15 <=3.0.0"
   }
 }

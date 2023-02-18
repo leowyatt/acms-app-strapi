@@ -1,15 +1,32 @@
-// in src/admin/App.jsx
-import * as React from "react";
-import { Admin, Resource, ListGuesser } from "react-admin";
-import jsonServerProvider from "ra-data-json-server";
+import { Admin, Resource, fetchUtils } from "react-admin";
+import strapiRestProvider from "../dataProvider/simpleRestProvider";
 
-const dataProvider = jsonServerProvider("https://jsonplaceholder.typicode.com");
+import { PostList, PostEdit, PostCreate } from "@/components/posts";
 
-const App = () => (
-  <Admin dataProvider={dataProvider}>
-    <Resource name="posts" list={ListGuesser} />
-    <Resource name="comments" list={ListGuesser} />
-  </Admin>
-);
+import { tokenDef } from "@/hooks/apolloClient";
+
+localStorage.setItem("token", tokenDef);
+
+const App = () => {
+  const httpClient = (url: string, options: any = {}) => {
+    if (!options.headers) {
+      options.headers = new Headers({ Accept: "application/json" });
+    }
+    const token = localStorage.getItem("token");
+
+    options.headers.set("Authorization", `Bearer ${token}`);
+    return fetchUtils.fetchJson(url, options);
+  };
+
+  const dataProvider = strapiRestProvider("http://localhost:6010/api", httpClient);
+
+  return (
+    dataProvider && (
+      <Admin dataProvider={dataProvider}>
+        <Resource name="posts" list={PostList} edit={PostEdit} create={PostCreate} />
+      </Admin>
+    )
+  );
+};
 
 export default App;

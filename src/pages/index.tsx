@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import { ApolloProvider } from "@apollo/client";
 import client from "@/hooks/apolloClient";
 
-const App = dynamic(() => import("../admin/AppPg"), { ssr: false });
+const App = dynamic(() => import("../admin/App"), { ssr: false });
 
 const Home: NextPage = () => {
   return (
