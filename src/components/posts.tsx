@@ -20,7 +20,7 @@ export const PostList = () => (
   <List>
     <Datagrid>
       <TextField source="id" />
-      <TextField source="title" />
+      <TextField source="attributes.title" />
       {/* <DateField source="published_at" />
       <TextField source="average_note" />
       <TextField source="views" /> */}
@@ -31,14 +31,14 @@ export const PostList = () => (
 
 const PostTitle = () => {
   const record = useRecordContext();
-  return <span>Post {record ? `"${record.title}"` : ""}</span>;
+  return <span>Post {record ? `"${record.attributes.title}"` : ""}</span>;
 };
 
 export const PostEdit = () => (
   <Edit title={<PostTitle />}>
     <SimpleForm>
       <TextInput disabled source="id" />
-      <TextInput source="title" />
+      <TextInput source="attributes.title" />
       {/* <TextInput source="teaser" options={{ multiline: true }} /> */}
       {/* <TextInput multiline source="body" /> */}
       {/* <DateInput label="Publication date" source="published_at" />
@@ -51,7 +51,7 @@ export const PostEdit = () => (
 export const PostCreate = () => (
   <Create title="Create a Post">
     <SimpleForm>
-      <TextInput source="title" />
+      <TextInput source="attributes.title" />
       {/* <TextInput source="teaser" options={{ multiline: true }} />
       <TextInput multiline source="body" />
       <TextInput label="Publication date" source="published_at" />
